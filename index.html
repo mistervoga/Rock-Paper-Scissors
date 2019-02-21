@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+
+
+    <script>
+
+        let playerselection = prompt("Type rock, paper or scissor!");
+        let computerselection = computerPlay();
+        let computercount = 0;
+        let playercount = 0;
+        game();
+
+
+        function computerPlay() {
+
+            let array = ["rock", "paper", "scissor"];
+
+            let random = array[Math.floor(Math.random() * array.length)]
+            return random;
+        }
+
+        function rock() {
+            if (computerselection == "rock") {
+                console.log("Game Tied!");
+
+            } else if (computerselection == "scissor") {
+                console.log("You won!")
+                playercount++;
+            } else {
+                console.log("You lost!")
+                computercount++;
+            }
+
+        }
+
+        function paper() {
+            if (computerselection == "rock") {
+                console.log("You won!");
+                playercount++;
+            } else if (computerselection == "scissor") {
+                console.log("You lost!")
+                computercount++;
+            } else {
+                console.log("Game Tied!")
+            }
+
+        }
+
+        function scissor() {
+            if (computerselection == "rock") {
+                console.log("You Lost!");
+                computercount++;
+            } else if (computerselection == "scissor") {
+                console.log("Game Tied!")
+            } else {
+                console.log("You won!")
+                playercount++;
+            }
+
+        }
+
+        function playRound(computerselection, playerselection) {
+            if (playerselection == "rock") {
+                rock();
+            } else if (playerselection == "scissor") {
+                scissor();
+            } else {
+                paper();
+            }
+
+        }
+
+        function game() {
+            do {
+                playRound(computerselection, playerselection);
+            } while (computercount <= 5 || playercount <= 5)
+        }
+
+
+
+
+
+    </script>
+</body>
+
+</html>
