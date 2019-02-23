@@ -1,83 +1,96 @@
-
-let playerselection = prompt("Type rock, paper or scissor!");
 let computerselection = computerPlay();
 let computercount = 0;
 let playercount = 0;
 
 
+const btn = document.querySelectorAll("button");
+btn.forEach((button) => {
+    button.addEventListener('click', function () { playRound(button.value) });
+});
+
+
+function game(computercount, playercount) {
+    if (computercount == 5 || playercount == 5) {
+        if (playercount > computercount) {
+            console.log(`You Won with a score of ${playercount}`);
+        } else if (playercount < computercount) {
+            console.log(`Computer Won with a score of ${computercount}`);
+        } else {
+            console.log("You won!")
+        }
+
+    }
+}
+
+
 function computerPlay() {
 
-    let array = ["rock", "paper", "scissor"];
+    let array = ["rock", "paper", "scissors"];
 
-    let random = array[Math.floor(Math.random() * array.length)]
+    let random = array[Math.floor(Math.random() * array.length)];
     return random;
 }
 
 function rock() {
     if (computerselection == "rock") {
-        console.log("Game Tied!");
+        console.log("Game Tied!")
 
     } else if (computerselection == "scissor") {
-        console.log("You won!")
+        console.log("You Lose")
         playercount++;
+        document.querySelector("#playercount span").innerHTML = playercount;
     } else {
-        console.log("You lost!")
+        console.log("You won!")
         computercount++;
+        document.querySelector("#computercount span").innerHTML = computercount;
     }
 
 }
 
 function paper() {
     if (computerselection == "rock") {
-        console.log("You won!");
-        playercount++;
-    } else if (computerselection == "scissor") {
-        console.log("You lost!")
+        console.log("You Lose!")
         computercount++;
+        document.querySelector("#computercount span").innerHTML = computercount;
+    } else if (computerselection == "scissor") {
+        console.log("You Won!")
+        playercount++;
+        document.querySelector("#playercount span").innerHTML = playercount;
     } else {
         console.log("Game Tied!")
+        
+        
     }
 
 }
 
-function scissor() {
+function scissors() {
     if (computerselection == "rock") {
-        console.log("You Lost!");
-        computercount++;
-    } else if (computerselection == "scissor") {
-        console.log("Game Tied!")
-    } else {
         console.log("You won!")
         playercount++;
+        document.querySelector("#playercount span").innerHTML = playercount;
+    } else if (computerselection == "scissors") {
+        console.log("Game Tied!")
+    } else {
+        console.log("You Lose!")
+        computercount++;
+        document.querySelector("#computercount span").innerHTML = computercount;
     }
 
 }
 
-function playRound(computerselection, playerselection) {
+function playRound(playerselection) {
     if (playerselection == "rock") {
         rock();
-    } else if (playerselection == "scissor") {
-        scissor();
+    } else if (playerselection == "scissors") {
+        scissors();
     } else {
         paper();
     }
 
 }
 
-function game() {
-    while (computercount <= 5 || playercount <= 5) {
-        playRound(computerselection, playerselection);
-    }
 
-    if (playercount > computercount) {
-        console.log(`You Won with a score of ${playercount}`);
-    } else if (playercount < computercount) {
-        console.log(`Computer Won with a score of ${computercount}`);
-    } else {
-        console.log('Match Drawn!');
-    }
-    console.log('\n');
-}
 
 
 
